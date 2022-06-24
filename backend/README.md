@@ -101,4 +101,23 @@ dropdb trivia_test
 createdb trivia_test
 psql trivia_test < trivia.psql
 python test_flaskr.py
+
+
+
 ```
+
+
+Endpoints 
+
+1. GET /questions : 
+   Results are paginated into 10 groups per page 
+
+2. GET /categories 
+   Gets all categories of questions in the database 
+
+3. POST /search 
+   Searches through the questions in the database for the given keywords. returns a list of all available questions which has the keyword, success value, and total number of questions gotten from the search
+
+4. DELETE /questions/{id}
+   Deletes the questions of the given ID if it exists. Returns the id of the deleted questions, success value, total questions, and questions list based on current page number to update the frontend.
+
