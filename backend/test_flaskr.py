@@ -69,7 +69,7 @@ class TriviaTestCase(unittest.TestCase):
             'question': 'new question',
             'answer': 'new answer',
             'difficulty': 1,
-            'category': 1
+            'category': 2
         }
         total_questions_before = len(Question.query.all())
         res = self.client().post('/questions', json=new_question)
