@@ -56,7 +56,7 @@ def create_app(test_config=None):
     @app.route('/categories')
     def get_category():
         categories= Category.query.all()
-        formatted_categories=[categories.format() for categories in categories ]
+        formatted_categories={category.id:category.type for category in categories}
 
         return jsonify({
             'categories': formatted_categories,
@@ -82,7 +82,7 @@ def create_app(test_config=None):
         selection = Question.query.order_by(Question.id).all()
         current_questions = paginate_questions(request, selection)
         categories= Category.query.order_by(Category.id).all()
-        formatted_categories=[categories.format() for categories in categories ]
+        formatted_categories={category.id:category.type for category in categories}
 
         if len(current_questions)== 0:
             abort(404)
@@ -134,14 +134,14 @@ def create_app(test_config=None):
     of the questions list in the "List" tab.
     """
 
-    @app.route('/questions', methods=['POST'])
+    @app.route('/createquestions', methods=["POST"])
     def create_questions():
         body = request.get_json()
 
-        new_question = body.get("question")
-        new_answer = body.get("answer")
-        new_difficulty = body.get("difficulty")
-        new_category = category.get("category")
+        new_question = body.get("question", None)
+        new_answer = body.get("answer", None)
+        new_category = body.get("category", None)
+        new_difficulty = body.get("difficulty", None)
 
         try:
             questions = Question(question=new_question, answer=new_answer, category=new_category, difficulty=new_difficulty)
