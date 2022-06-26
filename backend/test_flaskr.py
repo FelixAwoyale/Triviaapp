@@ -68,7 +68,7 @@ class TriviaTestCase(unittest.TestCase):
         new_question = {
             'question': 'new question',
             'answer': 'new answer',
-            'difficulty': 1,
+            'difficulty': 4,
             'category': 2
         }
         total_questions_before = len(Question.query.all())
